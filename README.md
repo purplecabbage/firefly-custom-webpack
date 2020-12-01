@@ -1,6 +1,27 @@
-# SimplePurpleCow
 
-Welcome to my Adobe I/O Application!
+This is a very basic example to show how to override the default packaging of firefly apps.
+
+See package.json#L32 for how this is done.
+```
+"post-app-build": "webpack-cli --entry ./actions/generic/index.js -t node -o dist/actions/generic2-temp/ && zip -r dist/actions/generic2.zip dist/actions/generic2-temp/",
+```
+
+- after firefly completes its default build behaviour (post-app-build)
+- run webpack-cli to build an action ( using a webpack config present in the project root )
+- zip the output of webpack-cli
+
+Note: this is an incomplete example, pull requests are welcome.
+
+TODO: 
+- the output is NOT identical to what `aio app deploy ` would produce ( make is so)
+- output is currently to generic2-temp and generic2.zip for simple comparison until the above is complete
+- output is not deployed ... for the reason above
+
+To develop, and not wait for deploys ... :
+```
+aio app deploy --skip-deploy --verbose --skip-static
+```
+
 
 ## Setup
 
